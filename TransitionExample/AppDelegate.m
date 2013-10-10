@@ -10,7 +10,8 @@
 #import "NIBController.h"
 #import "CodeController.h"
 
-NSInteger kPresentationStyle = UIModalPresentationCustom;
+// To test Custom presentation change the following to: UIModalPresentationCustom
+NSInteger kPresentationStyle = UIModalPresentationFullScreen;
 
 @implementation AppDelegate
 
