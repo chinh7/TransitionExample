@@ -31,7 +31,7 @@ static NSTimeInterval const AnimatedTransitionDuration = 0.5f;
     
     // if the modalPresentationStyle is set to Custom then the containerView will not have bounds that reflect device orientation
     // this view will be always in portrait mode (Apple BUG?)
-    if (toController.modalPresentationStyle == UIModalPresentationCustom || fromController.modalPresentationStyle == UIModalPresentationCustom) {
+    if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]) && (toController.modalPresentationStyle == UIModalPresentationCustom || fromController.modalPresentationStyle == UIModalPresentationCustom)) {
         container.transform = [[[UIApplication sharedApplication] delegate] window].rootViewController.view.transform;  // rotate
         container.bounds = CGRectMake(0, 0, container.bounds.size.height, container.bounds.size.width); // swap width & height
         
@@ -84,27 +84,27 @@ static NSTimeInterval const AnimatedTransitionDuration = 0.5f;
             if (toController.modalPresentationStyle == UIModalPresentationCustom) {
                 to.alpha = 0.f;
             }
-            //to.transform = CGAffineTransformMakeScale(0, 0);
+            to.transform = CGAffineTransformScale(to.transform, 0, 0);
             [container addSubview:to];
         }
         
         [UIView animateKeyframesWithDuration:AnimatedTransitionDuration delay:0 options:0 animations:^{
             if (! self.isPresenting) {
-                //from.transform = CGAffineTransformMakeScale(0, 0);
+                from.transform = CGAffineTransformScale(from.transform, 0, 0);
                 if (fromController.modalPresentationStyle == UIModalPresentationCustom) {
                     to.alpha = 1.0f;
                     from.alpha = 0.f;
                 }
             }
             else {
-                //to.transform = CGAffineTransformIdentity;
+                to.transform = CGAffineTransformIdentity;
                 if (toController.modalPresentationStyle == UIModalPresentationCustom) {
                     to.alpha = 0.7f;
                 }
             }
         } completion:^(BOOL finished) {
             // remove bound / frame / transform adjustments I've made before animation
-            if (toController.modalPresentationStyle == UIModalPresentationCustom || fromController.modalPresentationStyle == UIModalPresentationCustom) {
+            if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]) && (toController.modalPresentationStyle == UIModalPresentationCustom || fromController.modalPresentationStyle == UIModalPresentationCustom)) {
                 container.transform = CGAffineTransformIdentity;  // rotate
                 container.frame = CGRectMake(0, 0, container.bounds.size.height, container.bounds.size.width); // swap width & height
                 CGFloat angle = 0.f;
