@@ -9,6 +9,7 @@
 #import "CodeController.h"
 #import "TransitionDelegate.h"
 #import "CodeModalController.h"
+#import "AppDelegate.h"
 
 @interface CodeController ()
 @property (nonatomic, strong) TransitionDelegate *transitionController;
@@ -45,6 +46,7 @@
 - (void)onPresentButton:(id)sender {
     CodeModalController *controller = [[CodeModalController alloc] init];
     controller.transitioningDelegate = self.transitionController;
+    controller.modalPresentationStyle = kPresentationStyle;
     [self presentViewController:controller animated:YES completion:nil];
 }
 

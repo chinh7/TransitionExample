@@ -9,6 +9,7 @@
 #import "NIBController.h"
 #import "TransitionDelegate.h"
 #import "NIBModalController.h"
+#import "AppDelegate.h"
 
 @interface NIBController ()
 @property (nonatomic, strong) TransitionDelegate *transitionController;
@@ -25,6 +26,7 @@
 - (IBAction)onPresentButton:(id)sender {
     NIBModalController *controller = [[NIBModalController alloc] init];
     controller.transitioningDelegate = self.transitionController;
+    controller.modalPresentationStyle = kPresentationStyle;
     [self presentViewController:controller animated:YES completion:nil];
 }
 

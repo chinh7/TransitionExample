@@ -10,13 +10,15 @@
 #import "NIBController.h"
 #import "CodeController.h"
 
+NSInteger kPresentationStyle = UIModalPresentationCustom;
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // set both to NO to use the storyboard
     BOOL testCode = NO;
-    BOOL testNIB = NO;
+    BOOL testNIB = YES;
     
     if (testNIB || testCode) {
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -28,6 +30,7 @@
         else {
             controller = [[CodeController alloc] init];
         }
+
         self.window.rootViewController = controller;
         
         self.window.backgroundColor = [UIColor blackColor];
