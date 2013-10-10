@@ -32,6 +32,7 @@
 		865B8CAB17F479EC005ADA91 /* CodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 865B8CAA17F479EC005ADA91 /* CodeController.m */; };
 		865B8CAE17F479F5005ADA91 /* CodeModalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 865B8CAD17F479F5005ADA91 /* CodeModalController.m */; };
 		86A9968F17ECB6A500B91463 /* TransitionDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86A9968E17ECB6A500B91463 /* TransitionDelegate.m */; };
+		AFBCEEF31805AE0C006D9BB4 /* UIViewControllerContextTransitioning+UIModalPresentationCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = AFBCEEF21805AE0C006D9BB4 /* UIViewControllerContextTransitioning+UIModalPresentationCustom.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		865B8CAD17F479F5005ADA91 /* CodeModalController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeModalController.m; sourceTree = "<group>"; };
 		86A9968D17ECB6A500B91463 /* TransitionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionDelegate.h; sourceTree = "<group>"; };
 		86A9968E17ECB6A500B91463 /* TransitionDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionDelegate.m; sourceTree = "<group>"; };
+		AFBCEEF11805ADA4006D9BB4 /* UIViewControllerContextTransitioning+UIModalPresentationCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewControllerContextTransitioning+UIModalPresentationCustom.h"; sourceTree = "<group>"; };
+		AFBCEEF21805AE0C006D9BB4 /* UIViewControllerContextTransitioning+UIModalPresentationCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewControllerContextTransitioning+UIModalPresentationCustom.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +118,7 @@
 				865B8CAF17F47A34005ADA91 /* Code */,
 				865B8C9E17F466D8005ADA91 /* NIBs */,
 				865B8C9D17F466CC005ADA91 /* Storyboard */,
+				AFBCEEF01805AD5C006D9BB4 /* Patch */,
 				865B8CB017F47A3E005ADA91 /* Transition Delegate */,
 				862E546B1790810800AF5AC5 /* unimportant */,
 			);
@@ -238,6 +242,16 @@
 			path = TransitionExample;
 			sourceTree = "<group>";
 		};
+		AFBCEEF01805AD5C006D9BB4 /* Patch */ = {
+			isa = PBXGroup;
+			children = (
+				AFBCEEF11805ADA4006D9BB4 /* UIViewControllerContextTransitioning+UIModalPresentationCustom.h */,
+				AFBCEEF21805AE0C006D9BB4 /* UIViewControllerContextTransitioning+UIModalPresentationCustom.m */,
+			);
+			name = Patch;
+			path = TransitionExample/Patch;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -348,6 +362,7 @@
 				865B8CAB17F479EC005ADA91 /* CodeController.m in Sources */,
 				865B8C9C17F46611005ADA91 /* StoryboardModalController.m in Sources */,
 				862E54721790810800AF5AC5 /* main.m in Sources */,
+				AFBCEEF31805AE0C006D9BB4 /* UIViewControllerContextTransitioning+UIModalPresentationCustom.m in Sources */,
 				862E54A4179089CA00AF5AC5 /* TransitionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
