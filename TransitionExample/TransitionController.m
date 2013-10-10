@@ -29,6 +29,12 @@ static NSTimeInterval const AnimatedTransitionDuration = 0.5f;
     UIView *to = [toController view];
     UIView *container = [ctx containerView];
     
+
+    // Fixing autosizing
+    if (UIDeviceOrientationIsPortrait([[UIDevice currentDevice] orientation]) && toController.modalPresentationStyle == UIModalPresentationCustom) {
+        to.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    }
+    
     // if the modalPresentationStyle is set to Custom then the containerView will not have bounds that reflect device orientation
     // this view will be always in portrait mode (Apple BUG?)
     if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]) && (toController.modalPresentationStyle == UIModalPresentationCustom || fromController.modalPresentationStyle == UIModalPresentationCustom)) {
@@ -40,6 +46,10 @@ static NSTimeInterval const AnimatedTransitionDuration = 0.5f;
             subview.transform = CGAffineTransformIdentity;
             subview.frame = CGRectMake(0, 0, subview.bounds.size.width, subview.bounds.size.height);
         }
+        
+        // Fixing autosizing
+        to.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
         // toView
         if (to.superview != container) {
             to.transform = CGAffineTransformIdentity;
@@ -114,9 +124,10 @@ static NSTimeInterval const AnimatedTransitionDuration = 0.5f;
                 else if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
                     angle = -M_PI_2;
                 }
+                
                 for (UIView * subview in container.subviews) {
                     subview.transform = CGAffineTransformMakeRotation(angle);
-                    subview.frame = CGRectMake(0, 0, subview.bounds.size.height, subview.bounds.size.width);
+                    subview.frame = CGRectMake(0, 0, container.bounds.size.width, container.bounds.size.height);
                 }
             }
 
