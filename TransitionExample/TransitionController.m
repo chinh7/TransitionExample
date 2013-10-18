@@ -23,16 +23,17 @@ static NSTimeInterval const AnimatedTransitionDuration = 0.5f;
     return AnimatedTransitionDuration;
 }
 
-- (void)animateTransition:(id<UIViewControllerContextTransitioning>)ctx {
+- (void)animateTransition:(id<UIViewControllerContextTransitioning>)ctx
+{
     UIViewController *fromController = [ctx viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toController = [ctx viewControllerForKey:UITransitionContextToViewControllerKey];
     UIView *from = [fromController view];
     UIView *to = [toController view];
     UIView *container = [ctx containerView];
-    
+
     [(id)ctx patchUIModalPresentationCustomIfNeeded];
-    
-    BOOL animateSlide = NO;
+
+    BOOL animateSlide = YES;
     
     if (animateSlide) {
         CGRect fromFrame = from.frame;
@@ -54,7 +55,10 @@ static NSTimeInterval const AnimatedTransitionDuration = 0.5f;
         [UIView animateWithDuration:[self transitionDuration:ctx] delay:0 usingSpringWithDamping:0.8  initialSpringVelocity:5 options:kNilOptions animations:^{
             to.center = CGPointMake(CGRectGetWidth(container.bounds)/2, CGRectGetHeight(container.bounds)/2);
             from.frame = fromFrame;
-        }completion:^(BOOL finished){ [ctx completeTransition:YES]; }];
+        }completion:^(BOOL finished){
+            [(id)ctx restoreFromUIModalPresentationCustomIfNeeded];
+            [ctx completeTransition:YES]; }
+         ];
     }
     else {
         // Corrected code from Double Encore

@@ -11,7 +11,7 @@
 #import "CodeController.h"
 
 // To test Custom presentation change the following to: UIModalPresentationCustom
-NSInteger kPresentationStyle = UIModalPresentationFullScreen;
+NSInteger kPresentationStyle = UIModalPresentationCustom;
 
 @implementation AppDelegate
 

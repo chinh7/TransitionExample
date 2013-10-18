@@ -41,7 +41,7 @@
         to.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     }
     
-    if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]) && (toController.modalPresentationStyle == UIModalPresentationCustom || fromController.modalPresentationStyle == UIModalPresentationCustom)) {
+    if (UIInterfaceOrientationIsLandscape(fromController.interfaceOrientation) && (toController.modalPresentationStyle == UIModalPresentationCustom || fromController.modalPresentationStyle == UIModalPresentationCustom)) {
         container.transform = [[[UIApplication sharedApplication] delegate] window].rootViewController.view.transform;  // rotate
         container.bounds = CGRectMake(0, 0, container.bounds.size.height, container.bounds.size.width); // swap width & height
         
@@ -74,14 +74,14 @@
     UIView *container = [(id)self containerView];
     
     // remove bound / frame / transform adjustments I've made before animation
-    if (UIDeviceOrientationIsLandscape([[UIDevice currentDevice] orientation]) && (toController.modalPresentationStyle == UIModalPresentationCustom || fromController.modalPresentationStyle == UIModalPresentationCustom)) {
+    if (UIInterfaceOrientationIsLandscape(toController.interfaceOrientation) && (toController.modalPresentationStyle == UIModalPresentationCustom || fromController.modalPresentationStyle == UIModalPresentationCustom)) {
         container.transform = CGAffineTransformIdentity;  // rotate
         container.frame = CGRectMake(0, 0, container.bounds.size.height, container.bounds.size.width); // swap width & height
         CGFloat angle = 0.f;
-        if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
+        if (toController.interfaceOrientation == UIDeviceOrientationLandscapeLeft) {
             angle = M_PI_2;
         }
-        else if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
+        else if (toController.interfaceOrientation == UIDeviceOrientationLandscapeRight) {
             angle = -M_PI_2;
         }
         
